@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.messaging.FirebaseMessaging;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -22,8 +23,9 @@ public class FirebaseAutoConfiguration {
 
     @Bean
     public FirebaseMessaging firebaseMessaging() throws IOException {
-        GoogleCredentials googleCredentials=GoogleCredentials
-                .fromStream(new FileInputStream(firebaseProperties.getGoogleCredentials()));
+
+        ClassPathResource resource = new ClassPathResource(firebaseProperties.getGoogleCredentials());
+        GoogleCredentials googleCredentials = GoogleCredentials.fromStream(resource.getInputStream());
         FirebaseOptions firebaseOptions = FirebaseOptions
                 .builder()
                 .setCredentials(googleCredentials)

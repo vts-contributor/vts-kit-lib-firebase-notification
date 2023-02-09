@@ -25,7 +25,7 @@ Quick start
 * Then, add the following properties to your `application-*.yml` file.
 ```yaml
 firebase:
-  googleCredentials: <Url to file serviceAccountKey>
+  googleCredentials: <serviceAccountKey file>
   appName: <APP-NAME>
 ```
 
